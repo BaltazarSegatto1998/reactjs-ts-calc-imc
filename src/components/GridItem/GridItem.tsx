@@ -1,0 +1,36 @@
+import { Level } from "../../assets/helpers/imc";
+import styles from './GridItem.module.css';
+import upImagem from '../../assets/up.png';
+import downImage from '../../assets/down.png';
+
+type Props = {
+    item: Level
+};
+
+
+export const GridItem = ({item}: Props) => {
+    return (
+        <div className={styles.main} style={{backgroundColor:item.color}}>
+           <div className={styles.gridIcon}>
+            {item.icon === 'up' && <img src={upImagem} alt="" width="30" />}
+            {item.icon === 'down' && <img src={downImage} alt="" width="30" />}
+           </div>
+           <div className={styles.gridTitle}>
+            {item.title}
+           </div>
+
+           {item.youImc && 
+            <div className="style.youImc">
+                Seu IMC é de {item.youImc} kg/m²
+            </div>
+           }
+
+
+           <div className={styles.gridInfo}>
+            <>
+            IMC está entre <strong>{item.imc[0]}</strong> e <strong>{item.imc[1]}</strong>
+            </>
+           </div>
+        </div>
+    );
+}
